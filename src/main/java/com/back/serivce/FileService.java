@@ -1,6 +1,7 @@
 package com.back.serivce;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,10 @@ public class FileService {
         }
 
         return fileName;
+    }
+
+    public void deleteFile(String fileName) {
+        amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 
     public String createFileName(String fileName){
