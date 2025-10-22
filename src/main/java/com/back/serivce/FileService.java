@@ -33,13 +33,17 @@ public class FileService {
         objectMetadata.setContentLength(multipartFile.getSize());
         objectMetadata.setContentType(multipartFile.getContentType());
 
-        try(InputStream inputStream = multipartFile.getInputStream()){
+        String publicURL = null;
+        try(InputStream inputStream = multipartFile.getInputStream()) {
+            // S3 버킷에 해당 인자로 받은 이미지를 업로드
             amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, objectMetadata));
+            // 업로드한 이미지의 PublicURL 정보
+            publicURL = amazonS3.getUrl(bucket, fileName).toString();
         } catch (IOException e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
         }
 
-        return fileName;
+        return publicURL;
     }
 
     public void deleteFile(String fileName) {
