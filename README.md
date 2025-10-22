@@ -30,7 +30,7 @@ Client → Spring Boot (FileController) → S3 Bucket
 
 ### 🔹 파일 업로드 시나리오
 
-1. 사용자는 multipart/form-data 형식으로 파일 업로드 요청
+1. 사용자는 multipart/form-data 형식으로 파일 업로드 요청 (`POST localhost:8080/file`)
 2. SpringBoot 서버를 통해 S3 버킷에 저장
 3. 업로드된 파일의 S3 Public URL을 사용자에게 반환
 
@@ -38,7 +38,7 @@ Client → Spring Boot (FileController) → S3 Bucket
 
 ### 🔹 파일 삭제 시나리오
 
-1. 사용자는 S3에 저장된 파일이름과 함께 파일 삭제 요청
+1. 사용자는 S3에 저장된 파일이름과 함께 파일 삭제 요청 (`DELETE localhost:8080/file`)
 2. SppringBoot 서버는 해당 파일이름을 가진 S3 오브젝트의 존재를 체크
 3. 해당 오브젝트가 존재하다면 삭제
 4. 삭제된 파일이름을 사용자에게 반환
