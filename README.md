@@ -7,10 +7,10 @@ AWS S3를 이용한 **파일 업로드 및 삭제 기능**을 직접 구현해�
 
 | 항목 | 내용 |
 |------|------|
-| **Language** | Java |
-| **Framework** | Spring Boot |
-| **Infra** | AWS S3 |
-| **IDE** | IntelliJ IDEA |
+| **Language** | `Java` |
+| **Framework** | `Spring Boot` |
+| **Infra** | `AWS S3` |
+| **IDE** | `IntelliJ IDEA` |
 
 <br/>
 
