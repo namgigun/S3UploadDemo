@@ -34,12 +34,13 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    // S3 의존성 추가
+    // aws
+    implementation ("io.awspring.cloud:spring-cloud-starter-aws:2.4.4")
+    implementation ("io.awspring.cloud:spring-cloud-starter-aws-secrets-manager-config:2.4.4")
     implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
 
     // 스프링부트에 .env 적용
     implementation("me.paulschwarz:spring-dotenv:3.0.0")
-
 }
 
 tasks.withType<Test> {

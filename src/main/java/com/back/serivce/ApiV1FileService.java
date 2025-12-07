@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,8 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class FileService {
+@Log4j2
+public class ApiV1FileService {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
@@ -47,6 +49,10 @@ public class FileService {
     }
 
     public void deleteFile(String fileName) {
+        if(!amazonS3.doesObjectExist(bucket, fileName)) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 삭제에 실패했습니다.");
+        }
+
         amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 

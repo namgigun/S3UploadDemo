@@ -1,3 +1,9 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 3GB
+      max-request-size: 3GB
+
 cloud:
   aws:
     credentials:
